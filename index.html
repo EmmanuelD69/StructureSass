@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/style.css">
+		<title>Base Projet Sass</title>
+	</head>
+	<body>
+		<h1>ETAPES DE BASE POUR MONTER UNE ARCHITECTURE SASS</h1>
+		<ul>
+			<li>1 - créer un fichier package.json:<br>
+LDC: npm init -y</li>
+
+			<li>2 - installer les dépendances dont on a besoin:<br>
+LDC: npm install --save(-dev) bootstrap / normalize / jquery / node-sass /...)</li>
+
+			<li>3 - placer en ignore, 'node_module/' dans le .gitignore pour ne pas surcharger non repo git.</li>
+
+			<li>4 - en cas ou on recupère un repo avec un 'package.json' deja configuré, faire un 'npm install' pour récuperer toutes les dépendances dont on a besoin.</li>
+
+			<li>5 - indiquer dans le fichier 'package.json' la commande de script:<br>
+"build-css": "node-sass style.scss style.css",<br>
+commande qui va nous permettre de créer le fichier style.css via le fichier scss.</li>
+
+			<li>6 - créer une structure de dossier correspondant à notre projet:<br>
+----> css <br>
+----> scss / main.scss <br>
+Ps: pensez à créer le fichier 'main.scss'</li>
+
+			<li>7 - mettre à jour dans 'package.json' la ligne "build-css" avec notre nouvelle structure de dossier aka:<br>
+"build-css": "node-sass scss/main.scss css/style.css",</li>
+
+			<li>8 - création du fichier index.htlm(ou php) et "linker" notre fichier style.css<br>
+html: <link rel="stylesheet" href="css/style.css"></li>
+
+			<li>9 - mettre en place avec Sass l'option "watch" pour que le fichier scss soit mis à jour au fur et a mesure des changement. rajouter la commande --watch dans le fichier package.json sous la ligne script "build-css":<br>
+"node-sass --watch scss/main.scss css/style.css",</li>
+
+			<li>10 - installer "browser-sync" qui va nous permettre de recharger/raffraichir notre page de projet lorsqu'un ajout a été fait.<br>
+LDC: npm install --save-dev browser-sync</li>
+
+			<li>11 - créer dans le fichier package.json, le script qui va lancer browser-sync:<br>
+"reload": "browser-sync start --server --files ."<br>
+<strong>ATTENTION!! si messages d'erreur avec le '.', remplacer par une étoile(*)</strong></li>
+
+			<li>12 - lancer les scripts "build-css" & "reload" pour pouvoir commencer à travailler en temps réel:<br>
+LDC: npm run reload &<br>
+LDC: npm run build-css</li>
+
+			<li>12bis - pour n'avoir qu'une fenetre de terminal LDC et lancer tous les scripts en meme temps, on peut installer la dependance (dev) "run-all" en<br>
+LDC: npm install --save-dev npm-run-all</li>
+
+			<li>13 - créer le script "watcher" dans package.json pour lancer toutes les scripts en même temps en 1 ligne de commande:<br>
+"watcher": "run-p build-css reload"</li>
+
+			<li>14 - lancer la commande LDC qui va démarrer notre script "watcher":<br>
+LDC: npm run watcher<br>
+<strong>ATTENTION!!! Si votre fichier "index" est en PHP, il y'aura un message d'erreur car on demande à "watcher" de détourner le fichier php gérer par le serveur apache de notre machine et de le gerer virtuellement, il n'y arrivera pas! laisser le fichier index en HTML (aka: index.html)</strong></li>
+			<li>15 - mise en place d'une architecture Sass avec un dossier "base" pour intégrer nos fichiers "partials".<br>
+			on créer un dossier 'base' sous le dossier 'scss'</li>
+			<li>16 - on créer un fichier '_reset.scss' dans le dossier 'base'</li>
+			<li>17 - dans ce fichier '_reset.scss' on va copier/coller le model de "Eric Meyer" situé à l'adresse suivante:<br>
+			<a href="https://github.com/O-clock-Cosmos/Modele-projet-front/blob/master/css/reset.css" target="_blank">https://github.com/O-clock-Cosmos/Modele-projet-front/blob/master/css/reset.css</a> </li>
+			<li>18 - Repasser sur le fichier 'main.scss' pour commencer à "include" les différents éléments (fichiers) qui vont nous permettre de recoller tout notre css en un seul block</li>
+			<li>19 - Créer le sous dossier 'abstract' situé dans le dossier 'scss'</li>
+			<li>20 - Créer le fichier '_variables.scss' dans le sous dossier 'abstract'</li>
+			<li>21 - Importer le fichier '_variables.scss' dans notre fichier 'main.scss'</li>
+			<li>22 - Créer le sous dossier 'components' dans le dossier 'scss'</li>
+			<li>23 - Créer le fichier '_buttons.scss' dans le dossier 'components'</li>
+			<li>24 - Importer le fichier '_buttons.scss' dans notre fichier 'main.scss'</li>
+			<li>25 - Créer tous les sous dossier et fichiers scss dont vous avez besoin et les inclurent dans le fichier 'main.scss' en respectant bien l'ordre logique:<br>
+			---->Import des utilitaires.<br>
+			@import 'abstract/variables';<br>
+			---->Import des éléments de base <br>
+			@import 'base/reset';<br>
+			@import 'base/typo';<br>
+			---->Import des composants <br>
+			@import 'components/boutons'<br>
+			@import 'components/articles'</li>
+			<li>26 - Oui je sais, mon CSS est moche, mais ne pas tenir compte de cette partie pour votre projet :p , amusez vous bien!</li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+body {
+	background: lightgrey;
+	& h1 {
+		text-align: center;
+		font-size: 2em;
+		margin: 50px auto;
+		width: 600px;
+		height: 70px;
+		background: black;
+		color: white;
+	}
+
+	& ul {
+		width: 1000px;
+		margin: auto;
+		font-size: 1.5em;
+		& li {
+			margin-bottom: 20px;
+			color: black;
+			&:hover {
+				color: red;
+				cursor: pointer;
+			}
+		}
+	}
+}

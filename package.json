@@ -1,0 +1,19 @@
+{
+  "name": "WP-290817",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+		"build-css": "node-sass --watch scss/main.scss css/style.css",
+		"reload": "browser-sync start --server --files .",
+		"watcher": "run-p build-css reload"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.1"
+  }
+}
